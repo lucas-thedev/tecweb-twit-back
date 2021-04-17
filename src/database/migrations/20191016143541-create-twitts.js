@@ -2,30 +2,31 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('addresses', { 
-      id: {
+    return queryInterface.createTable('twiit', { 
+      id_twiit: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
       },
-      user_id: {
+      count_likes: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'users', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
       },
-      zipcode: {
+      count_retwiit: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      content: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      street: {
+      is_comment: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      number: {
-        type: Sequelize.INTEGER,
+      id_twiit_parent: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       created_at: {
@@ -40,6 +41,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('addresses');
+    return queryInterface.dropTable('twiit');
   }
 };

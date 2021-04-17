@@ -6,12 +6,8 @@ class Tech extends Model {
       name: DataTypes.STRING,
     }, {
       sequelize,
-      tableName: 'techs',
+      tableName: 'twiit',
     })
-  }
-
-  static associate(models) {
-    this.belongsToMany(models.User, { foreignKey: 'tech_id', through: 'user_techs', as: 'users' });
   }
 }
 
