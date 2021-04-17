@@ -2,35 +2,26 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('perfil_user', { 
-      id_user: {
+    return queryInterface.createTable('retwiit', { 
+      id_retwiit: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
       },
-      name: {
-        type: Sequelize.STRING,
+      id_twiit: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
         allowNull: false,
       },
-      username: {
-        type: Sequelize.STRING,
+      id_parent_user: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
         allowNull: false,
       },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      password: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      birthday: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      perfil_pic: {
-        type: Sequelize.STRING,
+      id_user: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
         allowNull: false,
       },
       created_at: {
@@ -45,6 +36,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('perfil_user');
+    return queryInterface.dropTable('retwiit');
   }
 };
