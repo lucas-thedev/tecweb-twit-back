@@ -11,17 +11,14 @@ module.exports = {
       },
       id_twiit: {
         type: Sequelize.INTEGER,
-        autoIncrement: true,
         allowNull: false,
       },
       id_parent_user: {
         type: Sequelize.INTEGER,
-        autoIncrement: true,
         allowNull: false,
       },
       id_user: {
         type: Sequelize.INTEGER,
-        autoIncrement: true,
         allowNull: false,
       },
       created_at: {

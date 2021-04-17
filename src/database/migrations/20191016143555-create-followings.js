@@ -11,7 +11,6 @@ module.exports = {
       },
       id_user: {
         type: Sequelize.INTEGER,
-        autoIncrement: true,
         allowNull: false,
       },
       created_at: {
