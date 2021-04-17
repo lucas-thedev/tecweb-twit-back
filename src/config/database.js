@@ -1,9 +1,9 @@
 module.exports = {
   dialect: 'mysql',
-  host: 'localhost',
-  username: 'tecweb_twiit_root',
-  password: 'tecweb_twiit_root',
-  database: 'twiit',
+  host: '127.0.0.1',
+  username: 'root',
+  password: 'admin',
+  database: 'twit',
   define: {
     timestamps: true,
     underscored: true,
