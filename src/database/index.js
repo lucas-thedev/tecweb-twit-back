@@ -1,10 +1,18 @@
-const Sequelize = require('sequelize');
 const dbConfig = require('../config/database');
 
-const User = require('../models/User');
+let mysql = require('mysql');
+let connection = mysql.createConnection(dbConfig)
 
-const connection = new Sequelize(dbConfig);
+let connect = {
+  createConnection() {  
+     connection.connect(function(err) {
+         if (err) {
+           return console.error('error: ' + err.message);
+         }
+         console.log('Connected to the MySQL server.');
+     });
+     return connection;
+   }
+ }
 
-User.init(connection);
-
-module.exports = connection;
+ module.exports = connect;

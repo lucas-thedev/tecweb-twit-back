@@ -1,17 +1,14 @@
-const User = require('../models/User');
+const userRepository = require('../repository/UserRepository');
 
 module.exports = {
-  async index(req, res) {
-    const users = await User.findAll();
-
-    return res.json(users);
+  index(req, res) {
+    userRepository.index()
+    .then((res) =>{
+      return res.json(users);
+    })
   },
 
   async store(req, res) {
-    const { name, username, email, password } = req.body;
-    console.log( name, username, email, password )
-    const user = await User.create({ name, username, email, password });
-
     return res.json(user);
   }
 };
