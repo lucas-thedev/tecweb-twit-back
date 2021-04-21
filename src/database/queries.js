@@ -16,6 +16,16 @@ let command = {
                 }
             });
         })
+    },
+
+    index(table) {
+        return 'SELECT * FROM ' + table;
+    },
+
+    store(table, fieldsArr, valuesArr) {
+        let fields = fieldsArr.toString()
+        let values = "'" + valuesArr.join("','") + "'"
+        return 'INSERT INTO ' + table + '(' + fields + ')' + ' VALUES (' + values + ');';
     }
 }
 

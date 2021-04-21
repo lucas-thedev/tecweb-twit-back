@@ -3,12 +3,15 @@ const userRepository = require('../repository/UserRepository');
 module.exports = {
   index(req, res) {
     userRepository.index()
-    .then((res) =>{
-      return res.json(users);
+    .then((response) =>{
+      return res.json(response);
     })
   },
 
   async store(req, res) {
-    return res.json(user);
+    userRepository.store()
+    .then((response) =>{
+      return res.json(response);
+    })
   }
 };
