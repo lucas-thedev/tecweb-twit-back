@@ -1,49 +1,27 @@
-const User = require('../models/User');
-const Twiit = require('../models/Twiit');
+const twittRepository = require('../repository/TwittRepository');
 
 module.exports = {
-  async index(req, res) {
-    const { user_id } = req.params;
-
-    const twiits = await Twiit.findAll({ id_user: user_id})
-
-    return res.json(twiits);
+  index(req, res) {
+    twittRepository.index()
+      .then((response) => {
+        return res.json(response)
+      })
   },
 
-  async store(req, res) {
-    const { user_id } = req.params;
-    const { name } = req.body;
-
-    const user = await User.findByPk(user_id);
-
-    if (!user) {
-      return res.status(400).json({ error: 'User not found' });
-    }
-
-    const [ twiit ] = await twiit.findOrCreate({
-      where: { name }
-    });
-
-    await user.addtwiit(twiit);
-
-    return res.json(twiit);
+  get(req, res) {
+    let id = req.params.id
+    twittRepository.get(id)
+      .then((response) => {
+        return res.json(response)
+      })
   },
 
-  async delete(req, res) {
-    const { user_id } = req.params;
+  store(req, res) {
+    let body = Object.values(req.body)
 
-    const user = await User.findByPk(user_id);
-
-    if (!user) {
-      return res.status(400).json({ error: 'User not found' });
-    }
-
-    const twiit = await twiit.findOne({
-      where: { id_user: user_id }
-    });
-
-    await user.twiit(twiit);
-
-    return res.json();
+    twittRepository.store(body)
+      .then((response) => {
+        return res.json(response)
+      })
   }
 };
