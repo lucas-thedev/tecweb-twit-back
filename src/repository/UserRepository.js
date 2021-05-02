@@ -1,10 +1,10 @@
 const sql = require('../database/queries');
 
 let userRepository = {
-  index() {
+  index(id) {
     return new Promise((resolve, reject) => {
 
-        let queryCommand = sql.index('perfil_user');
+        let queryCommand = sql.index('perfil_user', id);
 
         sql.query(queryCommand).then((res) => {
           resolve(res);
@@ -12,10 +12,10 @@ let userRepository = {
     })
   },
 
-  store() {
+  store(body) {
     return new Promise((resolve, reject) => {
 
-        let queryCommand = sql.store('perfil_user', ['username', 'created_at', 'biograph', 'birthday', 'perfil_pic', 'password', 'email', 'name'], ['teste', '2020-12-12', 'oi esta eh uma bio', '1997-08-08', '/assets/pic', '123456', 'user@user.com', 'juliette']);
+        let queryCommand = sql.store('perfil_user', ['username', 'created_at', 'biograph', 'birthday', 'perfil_pic', 'password', 'email', 'name'], body);
 
         sql.query(queryCommand).then((res) => {
           resolve(res);

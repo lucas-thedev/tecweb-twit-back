@@ -1,6 +1,6 @@
-let connection = require('./index');
+let connection = require('./index')
 
-let sql = connection.createConnection();
+let sql = connection.createConnection()
 
 let command = {
     query (qry) {
@@ -10,7 +10,7 @@ let command = {
                 let res = results;
     
                 if(error) {
-                    resolve({error, message: 'SQL query failed'});
+                    resolve({error, message: 'SQL query failed'})
                 } else {
                     resolve(res);
                 }
@@ -18,15 +18,23 @@ let command = {
         })
     },
 
-    index(table) {
-        return 'SELECT * FROM ' + table;
+    all(table) {
+        return 'SELECT * FROM ' + table + ' ORDER BY created_at DESC'
+    },
+
+    index(table, id) {
+        return 'SELECT * FROM ' + table + ' WHERE id_user= ' + id
+    },
+
+    get(table, username) {
+        return 'SELECT * FROM ' + table + ' WHERE username = ' + `"${username}"`
     },
 
     store(table, fieldsArr, valuesArr) {
         let fields = fieldsArr.toString()
         let values = "'" + valuesArr.join("','") + "'"
-        return 'INSERT INTO ' + table + '(' + fields + ')' + ' VALUES (' + values + ');';
+        return 'INSERT INTO ' + table + '(' + fields + ')' + ' VALUES (' + values + ');'
     }
 }
 
-module.exports = command;
+module.exports = command
