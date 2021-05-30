@@ -23,5 +23,12 @@ module.exports = {
       .then((response) => {
         return res.json(response)
       })
+  },
+
+  show(req, res) {
+    twittRepository.getAll()
+      .then((response) => {
+        return res.json(response)
+      })
   }
 };

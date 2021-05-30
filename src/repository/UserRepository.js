@@ -15,19 +15,24 @@ let userRepository = {
   store(body) {
     return new Promise((resolve, reject) => {
         let createCommand = sql.store('perfil_user', ['username', 'created_at', 'biograph', 'birthday', 'perfil_pic', 'password', 'email', 'name'], body);
-        const find = sql.get('perfil_user', body[0])
-
         const email = body[body.length-2]
-
-        console.log('log1: ', email)
         
-        sql.query(find).then((res) => {
+        const findByUsername = sql.getByField('perfil_user', 'username', body[0])
+        const findByEmail = sql.getByField('perfil_user', 'email', email)
+
+        sql.query(findByUsername).then((res) => {
           if (!res.length) {
-            sql.query(createCommand).then(createRes => {
-              resolve(rest)
+            sql.query(findByEmail).then(resEmail => {
+              if (!resEmail.length) {
+                sql.query(createCommand).then(createRes => {
+                  resolve(createRes)
+                })
+              } else {
+                reject("Este email já está sendo utilizado por outro usuário.")
+              }
             })
           } else {
-            reject("Teste mensagem")
+            reject("Este login de usuário já está sendo utilizado por outra pessoa.")
           }
         });
     })
