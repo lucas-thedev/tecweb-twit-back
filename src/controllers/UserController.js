@@ -20,9 +20,16 @@ module.exports = {
       return res.json(response);
     })
     .catch((message) => {
-      console.log('no catch: ', message)
       res.status(400)
       return res.json(message)
     })
-  }
+  },
+
+  get(req, res) {
+    let username = req.params.username
+    userRepository.get(username)
+    .then((response) => {
+      return res.json(response);
+    })
+  },
 };

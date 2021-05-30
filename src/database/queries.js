@@ -23,7 +23,7 @@ let command = {
     },
 
     index(table, id) {
-        return 'SELECT * FROM ' + table + ' WHERE id_user= ' + id
+        return 'SELECT * FROM ' + table + ' WHERE id_user= ' + id +  ' ORDER BY created_at DESC'
     },
 
     get(table, username) {
