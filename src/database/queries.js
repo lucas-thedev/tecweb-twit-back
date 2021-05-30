@@ -30,6 +30,10 @@ let command = {
         return 'SELECT * FROM ' + table + ' WHERE username = ' + `"${username}"`
     },
 
+    getByField(table, fieldKey, fieldValue) {
+        return 'SELECT * FROM ' + table + ` WHERE ${fieldKey} = ` + `"${fieldValue}"`
+    },
+
     store(table, fieldsArr, valuesArr) {
         let fields = fieldsArr.toString()
         let values = "'" + valuesArr.join("','") + "'"

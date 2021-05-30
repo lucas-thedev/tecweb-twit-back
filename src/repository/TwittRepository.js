@@ -46,6 +46,18 @@ let twittRepository = {
         });
     })
   },
+
+  
+  getAll() {
+    return new Promise((resolve, reject) => {
+
+      let queryCommand = sql.all('perfil_user');
+
+        sql.query(queryCommand).then((res) => {
+          resolve(res);
+        });
+    })
+  },
 }
 
 module.exports = twittRepository;
