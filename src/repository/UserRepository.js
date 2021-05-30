@@ -12,6 +12,17 @@ let userRepository = {
     })
   },
 
+  get(username) {
+    return new Promise((resolve, reject) => {
+
+        let queryCommand = sql.get('perfil_user', username)
+
+        sql.query(queryCommand).then((res) => {
+          resolve(res);
+        });
+    })
+  },
+
   store(body) {
     return new Promise((resolve, reject) => {
         let createCommand = sql.store('perfil_user', ['username', 'created_at', 'biograph', 'birthday', 'perfil_pic', 'password', 'email', 'name'], body);

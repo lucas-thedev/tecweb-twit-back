@@ -8,20 +8,23 @@ let twittRepository = {
 
         sql.query(queryCommand).then((res) => {
 
-          res.forEach((twit, index) => {
-
-            queryCommand = sql.index('perfil_user', twit.id_user)
-
-            sql.query(queryCommand).then((user) => {
-              res[index].username = user[0].username
-              if (index + 1 === res.length) {
-                resolve(res)
-              }
-
-            }) 
-          })
-
-        });
+          if (res && res.length > 0){
+            res.forEach((twit, index) => {
+  
+              queryCommand = sql.index('perfil_user', twit.id_user)
+  
+              sql.query(queryCommand).then((user) => {
+                res[index].username = user[0].username
+                if (index + 1 === res.length) {
+                  resolve({ data: res, idUser: twit.id_user })
+                }
+              }) 
+            })
+          }
+        })
+        .catch(err => {
+          reject({status: 500, error: err})
+        })
     })
   },
 
@@ -39,7 +42,7 @@ let twittRepository = {
   store(body) {
     return new Promise((resolve, reject) => {
 
-        let queryCommand = sql.store('twiit', ['id_user', 'created_at', 'count_likes', 'count_retwiit', 'content', 'is_comment', 'updated_at'], body);
+        let queryCommand = sql.store('twiit', ['id_user', 'username', 'created_at', 'count_likes', 'count_retwiit', 'content', 'is_comment', 'updated_at'], body);
 
         sql.query(queryCommand).then((res) => {
           resolve(res);
