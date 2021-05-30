@@ -19,5 +19,9 @@ module.exports = {
     .then((response) => {
       return res.json(response);
     })
+    .catch((message) => {
+      res.status(400)
+      return res.json({status: 400, error: message})
+    })
   }
 };
