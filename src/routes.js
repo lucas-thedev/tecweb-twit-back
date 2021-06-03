@@ -16,6 +16,8 @@ routes.get('/twit/:id', TwittController.get);
 routes.get('/twit/with-followers/:id', TwittController.getWithFollowers);
 routes.post('/twit/:user', TwittController.store);
 routes.post('/follow/:idUser/:idFollowing', FollowController.store);
+routes.get('/follow/:idUser/:idFollowing', FollowController.delete);
+routes.get('/follow/:idUser', FollowController.get);
 routes.post('/retwiit', RetwiitController.store);
 
 module.exports = routes;

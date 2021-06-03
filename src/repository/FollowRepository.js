@@ -35,6 +35,24 @@ let followRepository = {
       })
     })
   },
+
+  delete(idUser, idFollowing) {
+    return new Promise((resolve, reject) => {
+
+      let queryCommand = sql.delete('following', `id_user = ${idUser} AND id_following = ${idFollowing}`);
+
+      sql.query(queryCommand).then((res) => {
+        let status = 400
+        if (res.length) {
+            status = 200
+        }
+        resolve({status, res}); 
+      })
+      .catch(error => {
+        reject({status: 500, error})
+      })
+    })
+  },
 }
 
 module.exports = followRepository;
