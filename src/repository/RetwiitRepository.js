@@ -10,7 +10,21 @@ let retwiitRepository = {
       }).catch(err => {
         reject(err)
       })
-  })
+    })
+  },
+
+  get(id) {
+    return new Promise((resolve, reject) => {
+
+      let queryCommand = sql.index('retwiit', id);
+
+        sql.query(queryCommand).then((res) => {
+          resolve(res);
+        })
+        .catch(err => {
+          reject(err)
+        })
+    })
   },
 }
 

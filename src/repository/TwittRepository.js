@@ -61,6 +61,21 @@ let twittRepository = {
         });
     })
   },
+
+  getTwiitByID(idTwiit) {
+    return new Promise((resolve, reject) => {
+
+      let queryCommand = sql.getByField('twiit', 'id_twiit', idTwiit);
+
+        sql.query(queryCommand).then((res) => {
+          resolve(res);
+        }).catch(err => {
+          console.log(err)
+          reject(err)
+          return err
+        });
+    })
+  },
 }
 
 module.exports = twittRepository;
