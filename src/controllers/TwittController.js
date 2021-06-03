@@ -50,7 +50,7 @@ module.exports = {
         } else {
           twittRepository.get(id)
           .then(userTwiits => {
-            twiits.concat(userTwiits)
+            twiits.push(...userTwiits)
             return res.json({ data: twiits })
           })
         }
