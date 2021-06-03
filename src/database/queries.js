@@ -38,7 +38,11 @@ let command = {
         let fields = fieldsArr.toString()
         let values = "'" + valuesArr.join("','") + "'"
         return 'INSERT INTO ' + table + '(' + fields + ')' + ' VALUES (' + values + ');'
-    }
+    },
+
+    delete (table, condition){
+        return 'DELETE FROM ' + table + ' WHERE ' + condition + ' ;'
+    },
 }
 
 module.exports = command

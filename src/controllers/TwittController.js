@@ -111,9 +111,16 @@ module.exports = {
                     })
                 })
               })
+            } else {
+              // User twiits
+              twittRepository.get(id)
+                .then(userTwiits => {
+                  twiits.push(...userTwiits)
+                  twiits.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                  return res.json({ data: twiits })
+                })
             }
           })
-         
         }
       })
   }
