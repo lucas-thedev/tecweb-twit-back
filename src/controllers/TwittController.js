@@ -52,24 +52,24 @@ module.exports = {
                 twittRepository.getTwiitByID(retwiit.id_twiit)
                 .then(retwiitsTwiits => {
                   retwiitsTwiits[0].created_at = retwiit.created_at
+                  console.log(retwiit)
                   // Get user who retwiit
-                  userRepository.index(retwiitsTwiits[0].id_user).then(retwiitUserData => {
-                    console.log('retwiitUserData[0]: ', retwiitUserData[0])
-                    retwiitsTwiits[0].username = retwiitUserData[0].username
-                    twiits.push(...retwiitsTwiits)
-  
-                    // Get user normal twiits
-                    twittRepository.get(id)
-                    .then(userTwiits => {
-                      twiits.push(...userTwiits)
-                      twiits.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-                      return res.json({ data: twiits })
+                    userRepository.index(retwiit.id_user).then(retwiitUserData => {
+                      console.log('retwiitUserData[0]: ', retwiitUserData[0])
+                      retwiitsTwiits[0].username = retwiitUserData[0].username
+                      userRepository.index(retwiitsTwiits[0].id_user).then(retwiitUserFromData => {
+                        retwiitsTwiits[0].retwiitedFrom = retwiitUserFromData[0].username
+                        
+                        twiits.push(...retwiitsTwiits)
+                        // Get user normal twiits
+                        twittRepository.get(id)
+                        .then(userTwiits => {
+                          twiits.push(...userTwiits)
+                          twiits.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                          return res.json({ data: twiits })
+                        })
+                      })
                     })
-                  })
-                  .catch(err =>{
-                    console.log(err)
-                    return res.json(err)
-                  })
                 })
               })
             } else {
@@ -91,23 +91,27 @@ module.exports = {
                 twittRepository.getTwiitByID(retwiit.id_twiit)
                 .then(retwiitsTwiits => {
                   retwiitsTwiits[0].created_at = retwiit.created_at
+                  console.log(retwiit)
                   // Get user who retwiit
-                  userRepository.index(retwiit.id_user).then(retwiitUserData => {
-                    retwiitsTwiits[0].username = retwiitUserData[0].username
-                    console.log('retwiitUserData[0]: ', retwiitUserData[0])
-                    twiits.push(...retwiitsTwiits)
-  
-                    // Get user normal twiits
-                    twittRepository.get(id)
-                    .then(userTwiits => {
-                      twiits.push(...userTwiits)
-                      twiits.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-                      return res.json({ data: twiits })
+                    userRepository.index(retwiit.id_user).then(retwiitUserData => {
+                      console.log('retwiitUserData[0]: ', retwiitUserData[0])
+                      retwiitsTwiits[0].username = retwiitUserData[0].username
+                      userRepository.index(retwiitsTwiits[0].id_user).then(retwiitUserFromData => {
+                        retwiitsTwiits[0].retwiitedFrom = retwiitUserFromData[0].username
+                        
+                        twiits.push(...retwiitsTwiits)
+                        // Get user normal twiits
+                        twittRepository.get(id)
+                        .then(userTwiits => {
+                          twiits.push(...userTwiits)
+                          twiits.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                          return res.json({ data: twiits })
+                        })
+                      })
                     })
-                  })
                 })
               })
-            } 
+            }
           })
          
         }
