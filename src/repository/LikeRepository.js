@@ -60,7 +60,6 @@ let likeRepository = {
                  reject(erroAoZerar)
                })
           }
-          resolve()
         } else {
           const QUERY_CRIAR_REGISTRO = sql.store('likes', ['id_user', 'id_twiit', 'liked'], [idUser, idTwiit, 1])
 
