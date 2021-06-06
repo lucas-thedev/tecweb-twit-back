@@ -5,6 +5,7 @@ const LoginController = require('./controllers/LoginController');
 const TwittController = require('./controllers/TwittController');
 const FollowController = require('./controllers/FollowController');
 const RetwiitController = require('./controllers/RetwiitController');
+const LikeController = require('./controllers/LikeController');
 
 const routes = express.Router();
 
@@ -19,5 +20,6 @@ routes.post('/follow/:idUser/:idFollowing', FollowController.store);
 routes.get('/follow/:idUser/:idFollowing', FollowController.delete);
 routes.get('/follow/:idUser', FollowController.get);
 routes.post('/retwiit', RetwiitController.store);
+routes.post('/like/:idUser/:idPost', LikeController.store);
 
 module.exports = routes;

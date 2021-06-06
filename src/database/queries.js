@@ -30,6 +30,10 @@ let command = {
         return 'SELECT * FROM ' + table + ' WHERE username = ' + `"${username}"`
     },
 
+    getWithCondition(table, condition) {
+        return 'SELECT * FROM ' + table + ' WHERE ' + condition;
+    },
+
     getByField(table, fieldKey, fieldValue) {
         return 'SELECT * FROM ' + table + ` WHERE ${fieldKey} = ` + `"${fieldValue}"`
     },
@@ -43,6 +47,20 @@ let command = {
     delete (table, condition){
         return 'DELETE FROM ' + table + ' WHERE ' + condition + ' ;'
     },
+
+    update (table, column, data, condition){
+        let queryWithCondition = 'UPDATE ' + table + ' SET ' + column + ' = ' + data + ' WHERE ' + condition + ' ;'
+        let queryWithoutCondition = 'UPDATE ' + table + ' SET ' + column + ' = ' + data +' ;'
+        
+        if (condition){
+            console.log('QUERY: ', queryWithCondition)
+            return queryWithCondition
+        }
+
+        console.log('QUERY: ', queryWithCondition)
+
+        return queryWithoutCondition
+    }
 }
 
 module.exports = command
