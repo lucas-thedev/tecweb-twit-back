@@ -1,7 +1,6 @@
 const sql = require('../database/queries');
 
 let likeRepository = {
-  
   store(idUser, idTwiit) {
     return new Promise((resolve, reject) => {
       const QUERY_USER_LIKES = sql.getWithCondition('likes', ` id_user = ${idUser} AND id_twiit = ${idTwiit}`)
@@ -48,6 +47,7 @@ let likeRepository = {
       })
     })
   }
+  
 }
 module.exports = likeRepository;
 
