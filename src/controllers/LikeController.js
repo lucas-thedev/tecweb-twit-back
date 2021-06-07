@@ -15,4 +15,30 @@ module.exports = {
       return res.json(message)
     })
   },
+  get (req, res){
+    const id = req.params.idPost
+    likeRepository.get(id)
+    .then((response) => {
+      return res.json(response);
+    })
+    .catch((message) => {
+      console.log(message)
+      res.status(400)
+      return res.json(message)
+    })
+  },
+
+  jao (req, res){
+    const id = req.params.idPost
+    const idUser = req.params.idUser
+    likeRepository.jao(id,idUser)
+    .then((response) => {
+      return res.json(response);
+    })
+    .catch((message) => {
+      console.log(message)
+      res.status(400)
+      return res.json(message)
+    })
+  }
 };

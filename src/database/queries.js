@@ -34,6 +34,10 @@ let command = {
         return 'SELECT * FROM ' + table + ' WHERE ' + condition;
     },
 
+    getWithConditionCount(table, condition) {
+        return 'SELECT count(*) as count FROM ' + table + ' WHERE ' + condition;
+    },
+
     getByField(table, fieldKey, fieldValue) {
         return 'SELECT * FROM ' + table + ` WHERE ${fieldKey} = ` + `"${fieldValue}"`
     },

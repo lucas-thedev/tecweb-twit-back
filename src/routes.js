@@ -21,5 +21,7 @@ routes.get('/follow/:idUser/:idFollowing', FollowController.delete);
 routes.get('/follow/:idUser', FollowController.get);
 routes.post('/retwiit', RetwiitController.store);
 routes.post('/like/:idUser/:idPost', LikeController.store);
+routes.get('/like/count/:idPost', LikeController.get)
+routes.get('/liked/:idUser/:idPost', LikeController.jao)
 
 module.exports = routes;
